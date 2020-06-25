@@ -14,7 +14,7 @@
 
 	function LunchCheckController(string){
 		
-        if(string == undefined){ 
+        if(string == undefined || string == ""){ 
             $scope.message = "Please enter data first";
         }
         else { 
