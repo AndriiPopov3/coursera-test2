@@ -14,42 +14,13 @@
                 ShoppingListCheckOffService.moveitem(itemIndex);
         }
         ctrl1.errorMessage = ShoppingListCheckOffService.cnt1;
-        // if(ShoppingListCheckOffService.checkLength1() == true){
-        //     ctrl1.error = true;
-        // }else{
-        //     ctrl1.error = false;
-        // }
-        // ctrl1.checkLength1 = function () {
-        //     ShoppingListCheckOffService.checkLength1();
-        // }
-        // function CheckListLength(){
-        //     if(List1.length == 0){
-        //         return false;
-        //     }else{
-        //         return true;
-        //     }
-        // };
+
     }
     AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
     function AlreadyBoughtController(ShoppingListCheckOffService){
         var ctrl2 = this;
         ctrl2.List2 = ShoppingListCheckOffService.getList2();
         ctrl2.errorMessage = ShoppingListCheckOffService.cnt2;
-        // if(ShoppingListCheckOffService.checkLength2() == true){
-        //     ctrl2.error = true;
-        // }else{
-        //     ctrl2.error = false;
-        // }
-        // ctrl2.checkLength2 = function(){
-        //     ShoppingListCheckOffService.checkLength2();
-        // }
-        // function CheckListLength2(){
-        //     if(List2.length == 0){
-        //         return false;
-        //     }else{
-        //         return true;
-        //     }
-        // };
     }
 
     function ShoppingListCheckOffService(){
@@ -106,20 +77,5 @@
                 return true;
             }
         }
-        service.checkLength1 = function () {
-            if(List1.length == 0){
-                return true;
-            }else{
-                return false;
-            }
-        };
-
-        service.checkLength2 = function () {
-            if(List2.length == 0){
-                return true;
-            }else{
-                return false;
-            }
-        };
         }
 })();
