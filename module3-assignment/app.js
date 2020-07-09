@@ -12,8 +12,7 @@
       templateUrl: 'foundItems.html',
       scope: {
       items: '<',
-      // myTitle: '@title',
-      // badRemove: '=',
+      beacon: '<',
       onRemove: '&'
       },
       controller: FoundItemsDirectiveController,
@@ -26,28 +25,34 @@
 
     function FoundItemsDirectiveController() {
         var ctrl = this;
-  // list.cookiesInList = function () {
-  //   for (var i = 0; i < list.items.length; i++) {
-  //     var name = list.items[i].name;
-  //     if (name.toLowerCase().indexOf("cookie") !== -1) {
-  //       return true;
-  //     }
-  //   }
-
-  //   return false;
-  // };
+        ctrl.checkEmptiness = function(){
+            if(ctrl.items.length === 0){
+                return true;
+            } if (ctrl.items.length > 0){
+                return false;
+            }
+        }
     }
 
     NarrowItDownController.$inject = ['MenuSearchService'];
     function NarrowItDownController(MenuSearchService){
         var ctrl = this;
+        ctrl.found = [];
         ctrl.searchTerm = "";
-        ctrl.NarrowDown = function (){
-            MenuSearchService.getMatchedMenuItems(ctrl.searchTerm);
+        ctrl.beacon = false;
+        ctrl.NarrowDown = function (searchTerm){
+            var promise = MenuSearchService.getMatchedMenuItems(ctrl.searchTerm);
+            promise.then(function (response){
+                ctrl.found = response;
+                ctrl.beacon = true;
+            })
+            .catch(function (error){
+                console.log(error);
+                ctrl.beacon = true;
+            })
         };
-        ctrl.fItems = MenuSearchService.getfItems();
         ctrl.removeItem = function (itemIndex){
-            MenuSearchService.removeItem(itemIndex);
+            ctrl.found.splice(itemIndex, 1);
         };
     }
 
@@ -63,8 +68,7 @@
           url: ("https://davids-restaurant.herokuapp.com/menu_items.json")
         }).then(function(result){
 
-            // fItems = [];
-             // console.log(searchTerm);
+            fItems = [];
             for (var i = 0; i < result.data.menu_items.length; i++) {
             descr = result.data.menu_items[i].description.toLowerCase();
             if (descr.search(searchTerm) !== -1) {
@@ -76,8 +80,6 @@
       fItems.push(item);     
     }
     };
-     // console.log("works");
-     // console.log(fItems);
     return fItems;
     })
     .catch(function (error) {
@@ -86,8 +88,6 @@
     };
 
     service.getfItems = function(){
-        // console.log(fItems.length);
-        // console.log("AAAAAAAAA");
         return fItems;
     };
 

@@ -1,11 +1,13 @@
+<br>
+<br>
 <h3>List of items:</h3>
 <!-- <h1>AAAAAAAAA</h1> -->
 <ol>
-  <li ng-repeat="item in ctrl.fItems">
+  <li ng-repeat="item in ctrl.items">
     {{item.name}} - {{item.short_name}} - {{item.description}}
 
-    <!-- <button ng-click="list.badRemove($index);">Bad Remove Item</button> -->
+
     <button ng-click="ctrl.onRemove({index: $index});">Remove Item</button>
   </li>
 </ol>
-<!-- <div class="error" ng-if="list.cookiesInList()">WARNING! WARNING! COOKIES DETECTED!</div> -->
+<div ng-if="ctrl.checkEmptiness() && ctrl.beacon"><h4>Nothing found</h4></div>
