@@ -41,15 +41,23 @@
         ctrl.searchTerm = "";
         ctrl.beacon = false;
         ctrl.NarrowDown = function (searchTerm){
+            if ((ctrl.searchTerm.replace(/\s/g, "").length == 0)){
+                ctrl.found = [];
+                ctrl.beacon = true;
+            } else {
             var promise = MenuSearchService.getMatchedMenuItems(ctrl.searchTerm);
+
             promise.then(function (response){
                 ctrl.found = response;
                 ctrl.beacon = true;
+
             })
+    
             .catch(function (error){
                 console.log(error);
                 ctrl.beacon = true;
             })
+        }
         };
         ctrl.removeItem = function (itemIndex){
             ctrl.found.splice(itemIndex, 1);
