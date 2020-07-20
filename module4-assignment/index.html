@@ -1,17 +1,14 @@
 <!doctype html>
 <html lang="en" ng-app="MenuApp">
   <head>
-    <title>Narrow Down Your Menu Choice</title>
+    <title>Our Menu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <!-- <link rel="stylesheet" href="styles/styles.css"> -->
   </head>
 <body>
-  <div class="container" ng-controller="MenuAppController as ctrl">
-    <h1>Welcome to our restaurant</h1>
 
     <ui-view></ui-view>
-  </div>
     
   
     <!-- Libraries -->
@@ -20,18 +17,14 @@
 
     <!-- Modules & Services-->
     <script src="data.module.js"></script>
-    <script src="menudata.service.js"></script>
     <script src="menuapp.module.js"></script>
-    <script src="menuapp.controller.js"></script>
 
     <script src="routes.js"></script>
-
-    <script src="categories.component.js"></script>
-    <script src="items.component.js"></script>
     
+    <script src="menudata.service.js"></script>
+    <script src="categories.component.js"></script>
+    <script src="menuapp.controller.js"></script>
+    <script src="items.component.js"></script>
+    <script src="items.list.controller.js"></script>
 </body>
 </html>
-
-<!-- upon pressing the button service makes a server call and the data get passed to the categories.component which shows it while the url moves to /categories state using routes.js file
- upon pressing the second button the service makes another server call and the retrieved item data gets passed into the items.component which then shows it while moving the url to /item# state -- learn how to do the /item# call
- -- both components don't have their own data, they use the data got from calls -->

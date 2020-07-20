@@ -14,7 +14,9 @@ function MenuDataService($http){
 			method: "GET",
 			url: ("https://davids-restaurant.herokuapp.com/categories.json")
 		}).then(function(result){
-			categoryItems = result;
+			categoryItems = result.data;
+			// console.log(categoryItems);
+			console.log("bullshit cat");
 			return categoryItems;
 		})
 		.catch(function(error){
@@ -23,13 +25,15 @@ function MenuDataService($http){
 	};
 
 	service.getItemsForCategory = function(categoryShortName){
+		console.log("bullshit");
 		var link = "https://davids-restaurant.herokuapp.com/menu_items.json?category=" + categoryShortName;
 		return $http({
 			method: "GET",
 			url: (link)
 		}).then(function(result){
-			listItems = result;
-			// console.log(listItems);
+			listItems = result.data.menu_items;
+			 console.log("bullshit");
+			 console.log(listItems);
 			return listItems;
 		})
 		.catch(function(error){
@@ -37,13 +41,6 @@ function MenuDataService($http){
 		})
 	};
 
-	service.getCategoriesArray = function(){
-		return categoryItems;
-	};
-
-	service.getItemsArray = function(){
-		return listItems;
-	};
 }
 
 })();

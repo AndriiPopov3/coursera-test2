@@ -2,7 +2,6 @@
 <ol>
   <li ng-repeat="item in $ctrl.items">
     {{ item.short_name }} - {{ item.name }}
-    <a ui-sref="categories.items({itemId: $index})"><button ng-click="$ctrl.showInfo({index : $index});">Show info</button></a>
+    <a ui-sref="item({itemId: $ctrl.items[$index].short_name})"><button>Show info</button></a>
   </li>
 </ol>
-<!-- <div class="error">WARNING! WARNING! COOKIES DETECTED!</div> -->
