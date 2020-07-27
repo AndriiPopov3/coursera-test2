@@ -1,0 +1,12 @@
+<div class="container">
+	<h2>Registered info:</h2>
+	<span ng-if="myInfo.beacon">Not Signed Up Yet. <a ui-sref="reg-form">Sign up Now!</a></span>
+	<span ng-if="!myInfo.beacon">
+	<p>First name: {{myInfo.firstName}}</p>
+	<p>Last name: {{myInfo.lastName}}</p>
+	<p>Email: {{myInfo.email}}</p>
+	<p>Phone: {{myInfo.phone}}</p>
+	<p>Favorite dish: {{myInfo.dish.name}} - {{myInfo.dish.short_name}} - {{myInfo.dish.description}}</p>
+	<img src="images/menu/{{myInfo.dish.category_short_name}}/{{myInfo.dish.category_short_name}}.jpg">
+</span>
+</div>
